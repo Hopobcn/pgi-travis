@@ -17,7 +17,7 @@ TEMPORARY_FILES="/tmp"
 
 export PGI_SILENT=true
 export PGI_ACCEPT_EULA=accept
-export PGI_INSTALL_DIR="${HOME}/pgi"
+export PGI_INSTALL_DIR="/usr/local/pgi"
 export PGI_INSTALL_NVIDIA=false
 export PGI_INSTALL_AMD=false
 export PGI_INSTALL_JAVA=false
@@ -87,18 +87,25 @@ cd "${TEMPORARY_FILES}"
 tar zxf${VERBOSE_V}k pgi.tar.gz
 cd "${TEMPORARY_FILES}"/install_components && ./install
 
-PGI_VERSION=$(basename "${PGI_INSTALL_DIR}"/linux86-64/*.*/)
+export PGI_VERSION=$(basename "${PGI_INSTALL_DIR}"/linux86-64/*.*/)
+export PGI_HOME="${PGI_INSTALL_DIR}"/linux86-64/${PGI_VERSION}
+export PGI_BIN_DIR="${PGI_HOME}"/bin
+export PGI_LIB_DIR="${PGI_HOME}"/lib
+export PGI_MAN_DIR="${PGI_HOME}"/man
 
-INSTALL_BINDIR="${HOME}/bin"
-if [ ! -e "${INSTALL_BINDIR}" ]; then
-    mkdir -p "${INSTALL_BINDIR}"
+# clean up files
+if [ -e "${TEMPORARY_FILES}"/pgi.tar.gz ]; then
+    rm -f "${TEMPORARY_FILES}"/pgi.tar.gz
 fi
 
-for file in "${PGI_INSTALL_DIR}"/linux86-64/"${PGI_VERSION}"/bin/*; do
-    dest="${INSTALL_BINDIR}/$(basename "${file}")"
-    if [ -x "${file}" ]; then
-	echo "#!/bin/sh -x" > "${dest}"
-	echo "PGI=${PGI_INSTALL_DIR} PGI_INSTALL=\"\${PGI}\"/linux86-64/${PGI_VERSION} LM_LICENSE_FILE=\"\${PGI}\"/license.dat ${file} \$@" >> "${dest}"
-	chmod 0755 "${dest}"
-    fi
-done
+if [ -e "${TEMPORARY_FILES}"/documentation.html ]; then
+    rm -f "${TEMPORARY_FILES}"/documentation.html
+fi
+
+if [ -x "${TEMPORARY_FILES}"/install ]; then
+    rm -f "${TEMPORARY_FILES}"/install
+fi
+
+if [ -d "${TEMPORARY_FILES}"/install_components ]; then
+    rm -rf "${TEMPORARY_FILES}"/install_components
+fi
