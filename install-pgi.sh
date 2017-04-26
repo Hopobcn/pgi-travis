@@ -23,7 +23,7 @@ export PGI_INSTALL_AMD=false
 export PGI_INSTALL_JAVA=false
 export PGI_INSTALL_MPI=false
 export PGI_MPI_GPU_SUPPORT=false
-export PGI_INSTALL_MANAGED=false
+export PGI_INSTALL_MANAGED=true
 
 VERBOSE=false
 
