@@ -1,6 +1,6 @@
 # Install PGI Community Edition on Travis CI
 
-[![Build Status](https://travis-ci.org/nemequ/pgi-travis.svg?branch=master)](https://travis-ci.org/nemequ/pgi-travis)
+[![Build Status](https://travis-ci.org/Hopobcn/pgi-travis.svg?branch=master)](https://travis-ci.org/Hopobcn/pgi-travis)
 
 This project is intended to provide an easy way to use [PGI Community
 Edition](http://www.pgroup.com/products/community.htm) on Travis.

@@ -1,7 +1,7 @@
 language: c
 sudo: false
 before_install:
-  - ./install-pgi.sh
+  - . ./install-pgi.sh
   - export PATH=$PATH:$PGI_BIN_DIR
   - export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:$PGI_LIB_DIR
   - export MANPATH=$MANPATH:$PGI_MAN_PATH
