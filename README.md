@@ -45,7 +45,7 @@ wget -q -O /dev/stdout \
 
 Currently, there are several arguments you can pass:
 
- - `--dest DIR`: Location to install to.  Default: ${HOME}/pgi
+ - `--dest DIR`: Location to install to.  Default: /usr/local/pgi
  - `--tmpdir DIR`: Location for temporary files.  Default: /tmp
  - `--nvidia`: Install Nvidia tools.
  - `--amd`: Install AMD tools.
