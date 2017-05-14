@@ -1,14 +1,11 @@
 language: c
 sudo: required
 before_install:
-  - sudo ./install-pgi.sh --nvidia --managed --mpi --mpi-gpu && \
-    echo $PGI_BIN_DIR && \
-    echo $PGI_LIB_DIR && \
-  - echo $PGI_BIN_DIR
-  - echo $PGI_LIB_DIR
-  - export PATH=$PATH:$PGI_BIN_DIR
-  - export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:$PGI_LIB_DIR
-  - export MANPATH=$MANPATH:$PGI_MAN_PATH
+  - sudo ./install-pgi.sh --nvidia --managed --mpi --mpi-gpu
+  - export PGI_HOME=/usr/local/pgi/linux86-64/17.4
+  - export PATH=$PATH:$PGI_HOME/bin
+  - export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:$PGI_HOME/lib
+  - export MANPATH=$MANPATH:$PGI_HOME/man
 script:
   - pgcc -dM -E /dev/null
 notifications:
